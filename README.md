@@ -12,6 +12,10 @@
 - the classList value to apply to sub nav item
 - and classList value to apply to toggler
 
+### note
+
+- within the body of the html, create a div with an id of main-container and within this the code of nav bar
+
 ### my repository can help
 
 - or you can visit this repository [example] (https://github.com/FireDragonGod/drop-down-menus) 
