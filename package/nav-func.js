@@ -1,4 +1,4 @@
-import outsideDropDown from './container-func';
+import outsideDropDown from "./close-toggler";
 
 const elementDataAttribute = ({
   elementToGetAttribute,
@@ -53,6 +53,7 @@ const dynamicClassToggler = ({
   classListValues,
   elementToAddInArrays,
   elementsInArray,
+  closeToggler,
 }) => {
   const addElementInArray = () => elementsInArray.adder(elementToAddInArrays);
 
@@ -72,7 +73,7 @@ const dynamicClassToggler = ({
 
   const toggleThisElementsClassListWithCondition = (
     classListValue,
-    ClassListValueMatch,
+    ClassListValueMatch
   ) => {
     if (
       classListValue.classList.value === ClassListValueMatch.classList.value
@@ -86,7 +87,7 @@ const dynamicClassToggler = ({
       length,
       lastElement,
       secondLastElement,
-      classListValue,
+      classListValue
     ) {
       if (
         length >= 2 &&
@@ -97,7 +98,7 @@ const dynamicClassToggler = ({
 
         toggleThisElementsClassListWithCondition(
           lastElement,
-          secondLastElement,
+          secondLastElement
         );
       }
     };
@@ -115,10 +116,10 @@ const dynamicClassToggler = ({
       elementsInArrayLength,
       lastElemenInArray,
       secondLastElementInArray,
-      elementToAddClassListValue,
+      elementToAddClassListValue
     );
 
-    outsideDropDown(lastElemenInArray, classListValues);
+    outsideDropDown(lastElemenInArray, classListValues, closeToggler);
   };
 
   return {
@@ -135,10 +136,11 @@ const dropDown = ({
   subElement,
   classListValue,
   togglerClassListValue,
+  closerToggler,
 }) => {
   const dropDownElement = () => {
     elementToListen.forEach((element) => {
-      element.addEventListener('click', (e) => {
+      element.addEventListener("click", (e) => {
         e.stopPropagation();
 
         const dataAttributeValue = elementDataAttribute({
@@ -147,24 +149,25 @@ const dropDown = ({
         }).getDataAttribute();
 
         const subNavItem = document.querySelector(
-          `${subElement}="${dataAttributeValue}"]`,
+          `${subElement}="${dataAttributeValue}"]`
         );
 
-        subNavItem.addEventListener('click', (e2) => e2.stopPropagation());
+        subNavItem.addEventListener("click", (e2) => e2.stopPropagation());
 
         dynamicClassToggler({
           classListValues: classListValue,
           elementToAddInArrays: subNavItem,
           elementsInArray: subNavInArray,
+          closeToggler: closerToggler,
         }).toggleClass();
 
         dynamicClassToggler({
           classListValues: togglerClassListValue,
           elementToAddInArrays: element,
           elementsInArray: navBarTogglerInArray,
+          closeToggler: closerToggler,
         }).toggleClass();
       });
-
     });
   };
 
