@@ -1,4 +1,20 @@
-import outsideDropDown from "./close-toggler";
+const closeSubNavItem = (lastElement, classListVals, closerObj) => {
+  const closeObj = document.querySelector(closerObj);
+
+  closeObj.addEventListener("click", () => {
+    const classListValueLength = classListVals.length;
+
+    const lastElementClassListValue = lastElement.classList.value.slice(
+      -classListValueLength
+    );
+
+    if (lastElementClassListValue === classListVals) {
+      lastElement.classList.toggle(classListVals);
+    }
+  });
+
+  return closeObj;
+};
 
 const elementDataAttribute = ({
   elementToGetAttribute,
@@ -119,7 +135,7 @@ const dynamicClassToggler = ({
       elementToAddClassListValue
     );
 
-    outsideDropDown(lastElemenInArray, classListValues, closeToggler);
+    closeSubNavItem(lastElemenInArray, classListValues, closeToggler);
   };
 
   return {
