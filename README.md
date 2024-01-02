@@ -4,18 +4,71 @@
 
 ## how to use this?
 
-- supply the function's parameter based on the information required
+parameter => element toggler, element data attribute value, element data attribute, classList to show drop down element, active-toggler, close drop down element when this is clicked
 
-- element to listen => toggler
-- its data attribute and have value
-- it's nav-sub-items and have the same data attribute value as the toggler
-- the classList value to apply to sub nav item
-- and classList value to apply to toggler
+```css
+/* style menu item */
+.active-toggler {
+  background-color: black;
+  color: white;
+}
 
-### note
+/* show sub menu item */
+.visible {
+  display: block;
+}
+```
 
-- within the body of the html, create a div with an id of main-container and within this the code of nav bar
+```html
+<div id="main-container">
+  <header>
+    <nav id="nav-bar">
+      <ul class="nav-bar-contents">
+        <li class="nav-bar-list">
+          <div class="nav-bar-item" data-nav-bar-item="1">home</div>
+          <div class="nav-sub-item" data-nav-sub-item="1">
+            <ul class="nav-bar-links">
+              <li>
+                <a class="nav-bar-link" href="">nav-bar-link</a>
+              </li>
+              <li>
+                <a class="nav-bar-link" href="">nav-bar-link</a>
+              </li>
+              <li>
+                <a class="nav-bar-link" href="">nav-bar-link</a>
+              </li>
+              <li>
+                <a class="nav-bar-link" href="">nav-bar-link</a>
+              </li>
+              <li>
+                <a class="nav-bar-link" href="">nav-bar-link</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+```
 
-### my repository can help
+```js
+import dropDown from "@aloe_vera/drop-down-func/package/nav-func";
 
-- or you can visit this repository [example] (https://github.com/FireDragonGod/drop-down-menus) 
+const navBarItem = document.querySelectorAll("div[data-nav-bar-item]");
+
+dropDown({
+  // toggler
+  elementToListen: navBarItem,
+  itsDataAttribute: "data-nav-bar-item",
+
+  // toggle classList to
+  subElement: "div[data-nav-sub-item",
+  classListValue: "visible",
+
+  togglerClassListValue: "active-toggler",
+
+  // toggle toggler and it's sub element using a main container here or a cross
+  closerToggler: 'div[id="main-container"]',
+}).dropDownElement();
+```
