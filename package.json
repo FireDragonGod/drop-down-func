@@ -1,6 +1,6 @@
 {
   "name": "@aloe_vera/drop-down-func",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "- hide or show element on click.",
   "main": "nav-func.js",
   "scripts": {
